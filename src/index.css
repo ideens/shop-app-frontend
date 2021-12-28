@@ -1,0 +1,15 @@
+main {
+  min-height: 85vh;
+}
+
+.rating span {
+  margin: 0.1rem;
+}
+
+body {
+  background-color: white !important;
+  background-image: url('./assets/bg-art6.png') !important;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
