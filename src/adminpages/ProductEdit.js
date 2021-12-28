@@ -82,7 +82,7 @@ const ProductEdit = () => {
       }
 
       const { data } = await axios.post(
-        '/api/products/upload/',
+        `${process.env.REACT_APP_BASE_URL}api/products/upload/`,
         formData,
         config
       )

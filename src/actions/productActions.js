@@ -28,7 +28,9 @@ export const listProducts = () => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST })
     //this swill set off respective reducer, loading = true, empty array of products
-    const { data } = await axios.get('/api/products/')
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_BASE_URL}api/products/`
+    )
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data })
     // has now set state to data
   } catch (error) {
@@ -45,7 +47,9 @@ export const listProducts = () => async (dispatch) => {
 export const listProductDetail = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAIL_REQUEST })
-    const { data } = await axios.get(`/api/products/${id}`)
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_BASE_URL}api/products/${id}`
+    )
     dispatch({ type: PRODUCT_DETAIL_SUCCESS, payload: data })
   } catch (error) {
     dispatch({
@@ -74,7 +78,10 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.delete(`/api/products/delete/${id}`, config)
+    const { data } = await axios.delete(
+      `${process.env.REACT_APP_BASE_URL}api/products/delete/${id}`,
+      config
+    )
 
     dispatch({
       type: PRODUCT_DELETE_SUCCESS,
@@ -106,7 +113,11 @@ export const createProduct = () => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.post(`/api/products/create/`, {}, config)
+    const { data } = await axios.post(
+      `${process.env.REACT_APP_BASE_URL}api/products/create/`,
+      {},
+      config
+    )
 
     dispatch({
       type: PRODUCT_CREATE_SUCCESS,
@@ -140,7 +151,7 @@ export const updateProduct = (product) => async (dispatch, getState) => {
     }
 
     const { data } = await axios.put(
-      `/api/products/update/${product._id}/`,
+      `${process.env.REACT_APP_BASE_URL}api/products/update/${product._id}/`,
       product,
       config
     )
@@ -183,7 +194,7 @@ export const createProductReview =
       }
 
       const { data } = await axios.post(
-        `/api/products/${productId}/reviews/`,
+        `${process.env.REACT_APP_BASE_URL}api/products/${productId}/reviews/`,
         review,
         config
       )
